@@ -5,8 +5,221 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinalCalulator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="400" Width="600"
+        Background="LightPink">
+    <Window.Resources>
+        <ControlTemplate x:Key="RoundTextboxCornterTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}"   
+         x:Name="Bd" BorderBrush="Black"  
+         BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lbl_Title"
+            Content="Piggy Bank"
+            Foreground="SaddleBrown"
+            Grid.Row="0"
+            Grid.Column="0"
+            FontSize="26" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            />
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Label
+                x:Name="lbl_Pennies"
+                Grid.Row="0"
+                Grid.Column="0"
+                Content="Pennies"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Padding="0,0,15,0"
+                FontSize="20"
+                Foreground="SaddleBrown"
+                />
+
+            <TextBox
+                x:Name="txtbox_Pennies"
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="100"
+                Height="25"
+                HorizontalAlignment="Left"
+                Template="{StaticResource RoundTextboxCornterTemplate}"
+                Padding="5,0,0,0"
+                />
+            <Label
+                x:Name="lbl_Nickles"
+                Grid.Row="1"
+                Grid.Column="0"
+                Content="Nickles"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Padding="0,0,15,0"
+                FontSize="20"
+                Foreground="SaddleBrown"
+                />
+            <TextBox
+                x:Name="txtbox_Nickles"
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="100"
+                Height="25"
+                HorizontalAlignment="Left"
+                Template="{StaticResource RoundTextboxCornterTemplate}"
+                Padding="5,0,0,0"
+                />
+            <Label
+                x:Name="lbl_Dimes"
+                Grid.Row="2"
+                Grid.Column="0"
+                Content="Dimes"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Padding="0,0,15,0"
+                FontSize="20"
+                Foreground="SaddleBrown"
+                />
+            <TextBox
+                x:Name="txtbox_Dimes"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="100"
+                Height="25"
+                HorizontalAlignment="Left"
+                Template="{StaticResource RoundTextboxCornterTemplate}"
+                Padding="5,0,0,0"
+                />
+            <Label
+                x:Name="lbl_Quarters"
+                Grid.Row="3"
+                Grid.Column="0"
+                Content="Quarters"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Padding="0,0,15,0"
+                FontSize="20"
+                Foreground="SaddleBrown"
+                />
+            <TextBox
+                x:Name="txtbox_Quarters"
+                Grid.Row="3"
+                Grid.Column="1"
+                Width="100"
+                Height="25"
+                HorizontalAlignment="Left"
+                Template="{StaticResource RoundTextboxCornterTemplate}"
+                Padding="5,0,0,0"
+                />
+            <Button x:Name="Button_Calculate"
+                Grid.Row="4"
+                Grid.Column="1"
+                Width="100"
+                Height="30"
+                Content="Calculate"
+                HorizontalAlignment="Left"
+                Background="Cornsilk"
+                Foreground="SaddleBrown"
+                FontSize="18"
+                Click="Button_Calculate_Click"
+                />
+            <TextBox
+                x:Name="txtbox_Total"
+                Grid.Row="5"
+                Grid.Column="1"
+                Width="100"
+                Height="25"
+                HorizontalAlignment="Left"
+                Template="{StaticResource RoundTextboxCornterTemplate}"
+                Padding="5,0,0,0"
+                />
+
+            <Label
+                x:Name="lbl_Total"
+                Grid.Row="5"
+                Grid.Column="0"
+                Content="Total"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Padding="0,0,15,0"
+                FontSize="20"
+                Foreground="SaddleBrown"
+                />
+
+
+        </Grid>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            Orientation="Vertical">
+  
+
+            <Button 
+                x:Name="Button_Help"
+                Content="Help"
+                Height="39"
+                FontSize="16"
+                Margin="40,10,37,0" 
+                VerticalAlignment="Bottom" 
+                RenderTransformOrigin="0.517,0.53"
+                VerticalContentAlignment="Center"
+                Click="Button_Help_Click"
+                Background="Cornsilk"
+                Foreground="SaddleBrown"
+            />
+            <Button 
+                x:Name="Button_Exit"
+                Content="Exit"
+                Height="39"
+                FontSize="16"
+                Margin="40,10,37,0" 
+                VerticalAlignment="Bottom" 
+                RenderTransformOrigin="0.517,0.53"
+                VerticalContentAlignment="Center"
+                Click="Button_Exit_Click"
+                Background="Cornsilk"
+                Foreground="SaddleBrown"
+            />
+
+
+        </StackPanel>
+
+
     </Grid>
 </Window>
